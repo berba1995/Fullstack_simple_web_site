@@ -13,7 +13,7 @@
 -Conteneurisation du site
 
 
-##Préréquis : Django et pillow(pour le chargement d'images)
+## Préréquis : Django et pillow(pour le chargement d'images)
 
 ## Lancement
 
