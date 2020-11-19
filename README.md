@@ -18,4 +18,5 @@
 ## Lancement
 
 Python manage.py runserver --> http://127.0.0.1:8000/
+Ne pas oublier de faire les migrations
 
