@@ -1,4 +1,4 @@
-# Fullstack_simple_web_site(Django + Docker)
+# Fullstack_simple_web_site(Django + Docker) : V1
 
 ## Site internet simple avec les fonctionnalités suivantes:
 
