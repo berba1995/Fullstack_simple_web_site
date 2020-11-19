@@ -1,6 +1,6 @@
 # Fullstack_simple_web_site(Django)
 
-*Site internet simple avec les fonctionnalités suivantes:
+## Site internet simple avec les fonctionnalités suivantes:
 
 -Enregistrement de nouveaux utilisateurs(username, email, password, image) avec redirection vers dashboard,
 
