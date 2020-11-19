@@ -13,3 +13,9 @@
 -Conteneurisation du site
 
 
+##Préréquis : Django et pillow(pour le chargement d'images)
+
+## Lancement
+
+Python manage.py runserver --> http://127.0.0.1:8000/
+
