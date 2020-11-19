@@ -12,4 +12,4 @@ Site internet simple avec les fonctionnalités suivantes:
 
 -Conteneurisation du projet
 
-*outils: django 2 ;
+
