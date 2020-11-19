@@ -2,7 +2,7 @@
 
 *Site internet simple avec les fonctionnalités suivantes:
 
--Enregistrement de nouveaux utilisateurs(isername, email, password, image) avec redirection vers dashboard,
+-Enregistrement de nouveaux utilisateurs(username, email, password, image) avec redirection vers dashboard,
 
 -Connexion des utilisateurs déjà enregistrés avec accès dashbord
 
@@ -10,6 +10,6 @@
 
 -Deconnexion
 
--Conteneurisation du projet
+-Conteneurisation du site
 
 
