@@ -27,7 +27,8 @@ SECRET_KEY = '@v*ct75py@yd1hx5=%prabg3x)tb6dr+irfw*g-eno62h+k^&e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#adresse de la machine docker et loclahost
+ALLOWED_HOSTS = ['192.168.99.101','127.0.0.1']
 
 
 # Application definition
