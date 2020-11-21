@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = False
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -118,7 +118,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+##enregistrer notre backend d'authentification personnalisé
+AUTHENTICATION_BACKENDS = ['formulaire.backend.ModelBackend']
+AUTH_USER_MODEL = 'formulaire.CustomUser'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 

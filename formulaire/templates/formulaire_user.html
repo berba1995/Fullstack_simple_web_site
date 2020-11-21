@@ -1,5 +1,6 @@
-{% extends 'base.html' %}
-{% block body_block %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -102,29 +103,43 @@
         	}
         </style>
     </head>
-    <body >
+    <body>
         <div class="signup-form">
             <form enctype="multipart/form-data" method="post">
 
                 {% csrf_token %}
-                {% csrf_token %}
-                <p class="hint-text">Connexion</p>
+                <h2>Inscription</h2>
+                <p class="hint-text">Créez votre compte en moins de 30 secondes </p>
+
                 <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required="required">
+                    <div class="row">
+                        <div class="col-xs-6">{{ user_form.first_name }}</div>
+                        <div class="col-xs-6">{{ user_form.last_name }}</div>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                     {{ user_form.email }}
                 </div>
+
+
+                    <div class="form-group">
+                            {{ profile_form.photo_profil }}
+                    </div>
+
                 <div class="form-group">
+                    {{ user_form.password }}
+                </div>
+
 
                 <div class="form-group">
                     <label class="checkbox-inline"><input type="checkbox" required="required"> J'accepte <a href="#">les conditions </a>  <a href="#">d'utilisation</a></label>
                 </div>
-                <input type="submit" class="btn btn-primary btn-block" value="Se connecter">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-block" value="Inscription">
+                </div>
             </form>
 
         </div>
     </body>
 </html>
-
-{% endblock %}

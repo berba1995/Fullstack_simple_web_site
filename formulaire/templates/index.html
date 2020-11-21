@@ -1,118 +1,140 @@
 {% extends "base.html" %}
 
-
+{% load static %}
 
 {% block body_block %}
     <!DOCTYPE html>
     <html lang="en">
     <head>
+
       <title>Bootstrap Example</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
     </head>
-    <body>
+    <body style="background-image: url('{% static "media/bg.jpg"%}');>
 
 
-        <div class="container">
-          <div class="jumbotron">
-            {% if user.is_authenticated or registered%}
-                <h2>Bienvenue sur votre dashbord ! (désolé pour le rendu simple :pas eu le temps de faire du design :)</h2>
+        <div class="container" center-block>
 
-                <P>Username : {{ user.username }}</p>
-                <!-- <P>Email : {{ user.email }}</p> -->
 
-                <form class="form-inline">
-                      <div class="form-group">
-                            <label for="recipient-name" class="control-label"> Email : </label>
-                      </div>
 
-                      <div class="input-group m-2">
-                         <div class="input-group-prepend">
-                              <div class="input-group-text"></div>
-                         </div>
-                            <input type="text" class="form-control" id="email_champ" value={{ user.email }} disabled>
-                      </div>
+            <div class="row">
 
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="">Modifier_email</button>
-                </form>
 
-                {% if user.UserProfileInfo.photo_profil.url != "none" %}
-                    <P>Photo_profil :{{user.UserProfileInfo.photo_profil.url}} </p>
-                    <img src="{{user.userprofileinfo.photo_profil.url}}" width="100" >
+                <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
 
-                <form id = "update_email"> {% csrf_token %}
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel">Modification de votre adresse</h4>
-                          </div>
-                          <div class="modal-body">
+                    <div class="well well-sm">
+                        <div class="row">
 
-                               <div class="form-group">
-                                <label for="recipient-name" class="control-label"> Email : </label>
-                                <input type="text" class="form-control" id="recipient-name" type="email" id="email"  value={{ user.email }} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                              </div>
 
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" >Valider</button>
 
+                            {% if user.is_authenticated or registered%}
+
+                                <p class="text-center text-primary">Bienvenue sur votre dashbord</p>
+
+                                <div class="col-sm-6 col-md-4">
+                                    {% if user.UserProfileInfo.photo_profil.url != "none" %}
+                                        <img src="{{user.userprofileinfo.photo_profil.url}}" width="100" >
+                                    {% else %}
+                                        < img src="{% static 'media/bg.jpg' %}"" alt="" class="img-rounded img-responsive" />
+                                    {% endif %}
+
+                                </div>
+
+                                <div class="col-sm-6 col-md-8">
+
+                                    <h4>{{ user.last_name }} {{ user.first_name }}</h4>
+
+
+                                    <form class="form-inline">{% csrf_token %}
+                                         <input type="text" class="form-control" id="email_champ" value={{ user.email }} disabled>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="">Modifier</button>
+                                    </form>
+
+
+                                    <form id = "update_email"> {% csrf_token %}
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="exampleModalLabel">Modification de votre adresse</h4>
+                                              </div>
+                                              <div class="modal-body">
+
+                                                   <div class="form-group">
+                                                    <label for="recipient-name" class="control-label"> Email : </label>
+                                                    <input type="text" class="form-control" id="recipient-name" type="email" id="email"  value={{ user.email }} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                                  </div>
+
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary" >Valider</button>
+
+
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <p  id="myElem"  style="display:none">Saved</p>
+                                    </form>
+
+
+                                           <script >
+                                                 $('#exampleModal').on('show.bs.modal', function (event) {
+                                                  var button = $(event.relatedTarget) // Button that triggered the modal
+                                                  var recipient = button.data('whatever')// Extract info from data-* attributes
+                                                  var Email_value = $("#EMAIl").data('value');
+                                                  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                                                  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                                                  var modal = $(this)
+                                                  modal.find('.modal-title').text('Modification de votre adresse')
+                                                  modal.find('.modal-body input[name="test"]').val(Email_value)
+                                                })
+
+
+                                                $(document).on('submit','#update_email',function(e){
+                                                    e.preventDefault();
+
+                                                    var new_mail= document.getElementById("recipient-name").value;
+                                                    document.getElementById("email_champ").value = new_mail;
+
+                                                    $.ajax({
+                                                        type:'POST',
+                                                        url:'/update',
+                                                        data:{
+                                                            // email:$('#email').val(),
+                                                            email:new_mail,
+                                                            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                                                        },
+                                                        success : function(){
+                                                            // $("#exampleModal").modal("toggle");
+                                                            // $("#myElem").show();
+                                                            // setTimeout(function() { $("#myElem").hide(); }, 3000);
+
+
+                                                        }
+                                                    });
+                                                });
+
+
+
+                                        </script>
+
+                                </div>
+                            {% else %}
+                            <p class="text-center text-primary display-4">Bienvenue sur la Page de test : Dev fullstack !</p>
+                            <p class="text-center text-default">Enregistrez vous ou connectez vous pour avoir acces à votre dashbord</p>
+                            {% endif %}
                         </div>
-                      </div>
                     </div>
-                </form>
-
-
-                       <script >
-                             $('#exampleModal').on('show.bs.modal', function (event) {
-                              var button = $(event.relatedTarget) // Button that triggered the modal
-                              var recipient = button.data('whatever')// Extract info from data-* attributes
-                              var Email_value = $("#EMAIl").data('value');
-                              // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                              // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-                              var modal = $(this)
-                              modal.find('.modal-title').text('Modification de votre adresse')
-                              modal.find('.modal-body input[name="test"]').val(Email_value)
-                            })
-
-
-                            $(document).on('submit','#update_email',function(e){
-                                e.preventDefault();
-
-                                var new_mail= document.getElementById("recipient-name").value;
-                                document.getElementById("email_champ").value = new_mail;
-
-                                $.ajax({
-                                    type:'POST',
-                                    url:'/update',
-                                    data:{
-                                        // email:$('#email').val(),
-                                        email:new_mail,
-                                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
-                                    },
-                                    success : function(){
-                                        $("#exampleModal").modal("toggle");
-                                        alert('Email bien à jour !!')
-
-                                    }
-                                });
-                            });
-
-
-
-                    </script>
-
-                {% endif %}
-            {% else %}
-                <h1>Bienvenue sur la Page de test : Dev fullstack !</h1>
-                <h2>Enregistrez vous ou connectez vous pour avoir acces à votre dashbord</h2>
-            {% endif %}
+                </div>
           </div>
         </div>
 

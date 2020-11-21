@@ -4,5 +4,6 @@ WORKDIR /fullstack_test
 ADD requirements.txt /fullstack_test/
 RUN pip install -r requirements.txt
 ADD ./ /fullstack_test/
-CMD python manage.py migrate \
-  && python manage.py runserver 0.0.0.0:8001
+EXPOSE 8002
+CMD python3 manage.py migrate \
+  && python3 manage.py runserver 0.0.0.0:8002
